@@ -1,0 +1,18 @@
+[Unit]
+Description=Helium Package forwarder autostart
+After=network-online.target
+[Service]ExecStart=~/run.sh
+
+WorkingDirectory=~/
+
+StandardOutput=inherit
+
+StandardError=inherit
+
+Restart=always
+
+User=pi
+
+[Install]
+
+WantedBy=multi-user.target
