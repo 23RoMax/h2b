@@ -45,5 +45,5 @@ if [[ $DISTRO != *"Raspbian GNU/Linux 10 (buster)"* ]]; then
 fi
 read -p "Press any key to start installation process...." -n1 -s
 divdash
-cd packet_forwarder && sudo ./compile.sh
+sudo sh -c "cd ../packet_forwarder && sudo ./compile.sh"
 

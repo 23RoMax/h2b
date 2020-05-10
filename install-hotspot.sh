@@ -106,5 +106,5 @@ divdash
 SWAPFILE_UPDATED=$( cat /etc/dphys-swapfile | grep CONF_SWAPSIZE)
 echo "Swapfile updated and reads now: " $SWAPFILE_UPDATED
 divdash
-echo "System will now need to reboot - please execute install-hotpot-2.sh after restart"
-# sudo reboot
+echo "System will now need to reboot - please execute build.sh after restart"
+sudo reboot
