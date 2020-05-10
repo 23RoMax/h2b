@@ -56,21 +56,21 @@ echo "Preparing LoRa packet-forwarder && LoRa gateway..."
 divhash
 echo "Packet Forwarder"
 divdash
-execsilent "git clone https://github.com/Lora-net/packet_forwarder.git"
+execsilent "cd .. && git clone https://github.com/Lora-net/packet_forwarder.git"
 divdash
 echo "LoRa Gateway"
 divdash
-execsilent "git clone https://github.com/Lora-net/lora_gateway.git"
+execsilent "cd .. && git clone https://github.com/Lora-net/lora_gateway.git"
 divdash
 echo "Fetching the helium standard configuration for your packet forwarder..."
 divdash
-execsilent "mv packet_forwarder/lora_pkt_fwd/global_conf.json packet_forwarder/lora_pkt_fwd/global_conf_old.json"
-execsilent "wget https://helium-media.s3-us-west-2.amazonaws.com/global_conf.json && cp global_conf.json packet_forwarder/lora_pkt_fwd/global_conf.json"
+execsilent "mv ../packet_forwarder/lora_pkt_fwd/global_conf.json ../packet_forwarder/lora_pkt_fwd/global_conf_old.json"
+execsilent "wget https://helium-media.s3-us-west-2.amazonaws.com/global_conf.json && cp global_conf.json ../packet_forwarder/lora_pkt_fwd/global_conf.json"
 divdash
 echo "Setting SPI Speed to 2000000"
 divdash
-execsilent "cp lora_gateway/libloragw/src/loragw_spi.native.c lora_gateway/libloragw/src/loragw_spi.native.c.old"
-execsilent "sed \"s/#define SPI_SPEED       8000000/#define SPI_SPEED       2000000/g\" lora_gateway/libloragw/src/loragw_spi.native.c > lora_gateway/libloragw/src/loragw_spi.native.c"
+execsilent "cp ../lora_gateway/libloragw/src/loragw_spi.native.c ../lora_gateway/libloragw/src/loragw_spi.native.c.old"
+execsilent "sed \"s/#define SPI_SPEED       8000000/#define SPI_SPEED       2000000/g\" ../lora_gateway/libloragw/src/loragw_spi.native.c > ../lora_gateway/libloragw/src/loragw_spi.native.c"
 divdash
 echo "Activating the SPI & I2C Interface on the Pi"
 SPI=$( cat /boot/config.txt | grep "dtparam=spi=on" )
@@ -96,10 +96,10 @@ divdash
 SWAPFILE=$( cat /etc/dphys-swapfile | grep CONF_SWAPSIZE )
 echo "Swapfile reads: " $SWAPFILE
 sudo cp /etc/dphys-swapfile /etc/dphys-swapfile_backup
-sudo sh -c "sed \"s/"$SWAPFILE"/CONF_SWAPSIZE=1024/g\" /etc/dphys-swapfile > /etc/dphys-swapfile_new"
-echo $( cat /etc/dphys-swapfile_new )
+
 sudo sh -c "mv /etc/dphys-swapfile /etc/dphys-swapfile_old"
-sudo sh -c "mv /etc/dphys-swapfile_new /etc/dphys-swapfile"
+sudo sh -c "cp dphys-swapfile_new /etc/dphys-swapfile"
+echo $( cat /etc/dphys-swapfile )
 divdash
 SWAPFILE_UPDATED=$( cat /etc/dphys-swapfile | grep CONF_SWAPSIZE)
 echo "Swapfile updated and reads now: " $SWAPFILE_UPDATED
