@@ -70,7 +70,9 @@ divdash
 echo "Setting SPI Speed to 2000000"
 divdash
 execsilent "cp ../lora_gateway/libloragw/src/loragw_spi.native.c ../lora_gateway/libloragw/src/loragw_spi.native.c.old"
-execsilent "sed \"s/#define SPI_SPEED       8000000/#define SPI_SPEED       2000000/g\" ../lora_gateway/libloragw/src/loragw_spi.native.c > ../lora_gateway/libloragw/src/loragw_spi.native.c"
+execsilent "sed \"s/#define SPI_SPEED       8000000/#define SPI_SPEED       2000000/g\" ../lora_gateway/libloragw/src/loragw_spi.native.c > loragw_spi.native.c"
+execsilent "sudo rm -rf ../lora_gateway/libloragw/src/loragw_spi.native.c"
+execsilent "sudo cp loragw_spi.native.c ../lora_gateway/libloragw/src/loragw_spi.native.c"
 divdash
 echo "Activating the SPI & I2C Interface on the Pi"
 SPI=$( cat /boot/config.txt | grep "dtparam=spi=on" )
