@@ -48,7 +48,7 @@ Congratulations, you have successfully done the base installation of your hotspo
 
 To run it, head back to your root folder `cd ~` and issue 
 ```Shell
-../lora_gateway/reset_lgw.sh start 17
+./lora_gateway/reset_lgw.sh start 17
 ```
 
 To reset your concentrator via GPIO pin 17, followed by
@@ -85,8 +85,27 @@ sudo systemctl start helium.service
 Your machine will now start the package forwarder on reboot automatically.
 _Mind - do not remove run.sh from your users root folder_
 
+## Compatibility
+
+Tested in combination with:
+
+_LoraWAN Interfaces:_
+- [Rakwireless RAK2245 PI HAT](https://store.rakwireless.com/products/rak2245-pi-hat)
+- [Rakwireless RAK831 concentrator](https://store.rakwireless.com/products/rak831-gateway-module?variant=22375114801252) Tested by [TTeague](https://github.com/illperipherals)
+
+_SBCs:_
+- [Raspberry Pi 3B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)
+- [Raspberry Pi 4](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
+
+_Operating Systems:_
+- [2020-02-13-raspbian-buster-lite](https://downloads.raspberrypi.org/raspbian_lite/images/)
+- [2020-05-27 Raspberry Pi OS (32) Lite](https://downloads.raspberrypi.org/raspios_lite_armhf_latest) _Mind:_ At the time of writing this is the latest armhf stable buster lite release
+
 ## Open To-Do's
 
 1. Adding the installation process of the service to the installation routine
 2. Adding a selection process of the gateway configurations during installation routine - see [TTN config files](https://github.com/TheThingsNetwork/gateway-conf)
 
+# Thank you
+
+[Travis - for your help in testing and spreading the word of this script](https://github.com/illperipherals)
